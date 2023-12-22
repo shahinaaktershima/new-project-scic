@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { BiTask } from "react-icons/bi";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "./AuthProvider";
 
 const Navbar = () => {
@@ -10,9 +10,11 @@ const Navbar = () => {
     .then()
     .catch()
   }
+  
     const navlinks=<>
      <li ><NavLink className={'font-bold '} to='/'>Home</NavLink></li>
      <li><NavLink className={'font-bold '} to='/register'>Register</NavLink></li>
+     <li><NavLink className={'font-bold '} to='/task'>Task</NavLink></li>
      
            
      
@@ -45,14 +47,9 @@ const Navbar = () => {
         <div className="navbar-end md:mr-20">
         {
     user?
-    <div className="dropdown  ">
-    <div tabIndex={0} role="button" className="btn "><img className="h-[50px] w-[50px] rounded-full" src={user.photoURL} alt="" /></div>
-    <ul className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-30 text-center">
-      <li className={'text-purple-600 font-bold'}>{user.displayName}</li>
-      <li><a><NavLink to='/dashboard' className={'text-purple-600 font-bold'}>Dashboard</NavLink></a></li>
-      <button onClick={handleLogOut} className="btn btn-sm font-bold bg-purple-600">LogOut</button>
-    </ul>
-  </div>:  <a href=""><NavLink className={'font-bold '} to='/login'>LogIn</NavLink></a>
+   <div className="flex md:flex-row flex-col gap-5"> <NavLink to='/dashboard' className={'btn bg-purple-400 border-black text-black font-bold'}>Dashboard</NavLink>
+   <Link onClick={handleLogOut} ><button className="font-bold">log out</button></Link></div>
+   :  <a href=""><NavLink className={'font-bold '} to='/login'>LogIn</NavLink></a>
   }
   </div>
        

@@ -8,13 +8,16 @@ import {
 } from "react-router-dom";
 import Main from './Main/Main';
 import Error from './Main/Error';
-import Todo from './Layout/todo/Todo';
 import Login from './Layout/todo/Login';
 import Register from './Layout/todo/Register';
 import AddTask from './Layout/todo/AddTask';
 import Home from './Main/Home';
 import AuthProvider from './Main/AuthProvider';
 import Private from './Main/Private';
+import Task from './Layout/todo/task/Task';
+import Dashboard from './Layout/todo/dashboard/Dashboard';
+import AddedTask from './Layout/todo/AddedTask';
+import UpdateTask from './Layout/todo/UpdateTask';
 
 
 const router = createBrowserRouter([
@@ -23,8 +26,8 @@ const router = createBrowserRouter([
     element: <Main></Main>,
     errorElement:<Error></Error>,
     children:[{
-      path:'/todo',
-      element:<Private><Todo></Todo></Private>
+      path:'/task',
+      element:<Private><Task></Task></Private>
     },
     {
      path:'/',
@@ -49,6 +52,25 @@ const router = createBrowserRouter([
     element:<Register></Register>
 
   },
+  {
+    path:'/dashboard',
+    element:<Dashboard></Dashboard>,
+    errorElement:<Error></Error>,
+    children:[{
+      path:'/dashboard/',
+      element:<Task></Task>
+    },
+  {
+    path:'/dashboard/addtasks',
+    element:<AddTask></AddTask>
+  },
+  {
+    path:"/dashboard/addedtasks",
+    element:<AddedTask></AddedTask>
+  }
+  
+  ]
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
